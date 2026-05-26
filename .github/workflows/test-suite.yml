@@ -43,6 +43,6 @@ jobs:
       - name: Monitor smoke
         run: python main.py --mode monitor --duration 1 --num-objects 2 --no-trained 2>&1 | tee monitor.log
       - name: Assert simulation detection mode
-        run: grep -q "Detection source: simulation" monitor.log
+        run: 'grep -q "Detection source: simulation" monitor.log'
       - name: File replay smoke
         run: python main.py --mode monitor --use-files --no-trained
