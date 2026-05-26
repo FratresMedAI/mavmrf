@@ -1,8 +1,8 @@
-# Project REEF — MAVMRF
+# MAVMRF
 
-**Maritime Autonomous Vehicle Monitoring and Response Framework (MAVMRF)** — a simulation-first Python pipeline for multi-sensor maritime detect, track, and classify, developed in alignment with the DIU Robotic Exclusion & Engagement Framework (REEF) Component 1.
+**Maritime Autonomous Vehicle Monitoring and Response Framework** — a simulation-first Python pipeline for multi-sensor maritime detect, track, and classify.
 
-Portfolio highlight: end-to-end computer-vision and sensor-fusion workflow from synthetic multi-modal streams through YOLOv8 detection, SORT tracking, operator-facing JSON reports, and Matplotlib visualizations.
+End-to-end workflow from synthetic multi-modal streams through YOLOv8 detection, SORT tracking, operator-facing JSON reports, and Matplotlib visualizations.
 
 ## Highlights
 
@@ -45,15 +45,14 @@ Training:
 python main.py --mode train
 ```
 
-Full CLI options, class list, and configuration notes: [`marmf/README.md`](marmf/README.md).
+Full CLI options, class list, and configuration: [`marmf/README.md`](marmf/README.md).
 
 ## Repository layout
 
 | Path | Description |
 |------|-------------|
 | [`marmf/`](marmf/) | Core framework — sensors, models, tracking, response |
-| [`docs/`](docs/) | Solution brief, compliance matrix, demo script, sample report |
-| [`DIU_Submission_Ready/`](DIU_Submission_Ready/) | Original submission packet materials (markdown/HTML) |
+| [`docs/`](docs/) | Solution brief, capability matrix, demo script, sample report |
 
 ## Tech stack
 
@@ -61,11 +60,11 @@ Python 3 · OpenCV · NumPy · Ultralytics (YOLOv8) · Matplotlib · SciPy · sc
 
 ## Sample output
 
-A representative monitor frame report is included at [`docs/samples/report_frame_00005.json`](docs/samples/report_frame_00005.json). Run the monitor locally to regenerate full report and visualization series.
+A representative monitor frame report: [`docs/samples/report_frame_00005.json`](docs/samples/report_frame_00005.json). Run the monitor locally to regenerate reports and visualizations.
 
 ## Disclaimer
 
-This repository is a **portfolio / prototype** implementation using simulated sensor data. It is not affiliated with or endorsed by the U.S. government or DIU. REEF program naming is used for technical context only.
+Portfolio prototype using **simulated sensor data**. Not intended for operational deployment without live sensor integration and validation.
 
 ## License
 

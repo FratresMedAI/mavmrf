@@ -1,7 +1,8 @@
-# REEF Component 1 Compliance Matrix (MAVMRF)
+# MAVMRF Capability Matrix
 
 ## Scope
-This matrix maps MAVMRF capabilities to Detect, Track, and Classify requirements for Solution Component 1.
+
+Maps MAVMRF capabilities to detect, track, and classify requirements.
 
 ## Requirement Mapping
 
@@ -34,5 +35,6 @@ This matrix maps MAVMRF capabilities to Detect, Track, and Classify requirements
   - Evidence: `interfaces/sensor_adapter.py` (`SensorAdapter`, `JsonFileSensorAdapter`).
 
 ## Runtime Validation
-- Command validated: `python main.py --mode monitor --duration 2 --num-objects 3 --filter-sensitivity high`
+
+- Command: `python main.py --mode monitor --duration 2 --num-objects 3 --filter-sensitivity high`
 - Result: Successful end-to-end run with generated reports and visualizations.

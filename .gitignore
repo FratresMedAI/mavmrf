@@ -22,6 +22,10 @@ marmf/incoming_data/*.json
 *.onnx
 runs/
 
+# Archives (regenerate locally if needed)
+*.zip
+*.pdf
+
 # Environment and secrets
 .env
 .env.*
