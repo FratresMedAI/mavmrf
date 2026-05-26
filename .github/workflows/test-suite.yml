@@ -21,39 +21,29 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     defaults:
       run:
         working-directory: marmf
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: marmf/requirements.txt
-
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
-
       - name: Lint
         run: ruff check .
-
       - name: Run tests
         run: pytest tests -q
-
       - name: Generate dataset smoke
         run: python scripts/generate_dataset.py --train-frames 4 --val-frames 2 --num-objects 2 --clean
-
       - name: Monitor smoke
         run: python main.py --mode monitor --duration 1 --num-objects 2 --no-trained 2>&1 | tee monitor.log
-
       - name: Assert simulation detection mode
         run: grep -q "Detection source: simulation" monitor.log
-
       - name: File replay smoke
         run: python main.py --mode monitor --use-files --no-trained

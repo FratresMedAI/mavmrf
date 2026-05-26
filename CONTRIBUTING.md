@@ -54,7 +54,7 @@ cp reports/visualization_frame_00000.png ../docs/screenshots/monitor_frame.png
 
 ## CI
 
-GitHub Actions workflow: [`.github/workflows/tests.yml`](.github/workflows/tests.yml)
+GitHub Actions workflow: [`.github/workflows/test-suite.yml`](.github/workflows/test-suite.yml)
 
 Runs on push/PR to `master`: lint (ruff), pytest, dataset smoke, monitor smoke, file replay.
 

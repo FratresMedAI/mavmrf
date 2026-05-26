@@ -1,6 +1,6 @@
 # MAVMRF
 
-[![Tests](https://github.com/FratresMedAI/mavmrf/actions/workflows/tests.yml/badge.svg)](https://github.com/FratresMedAI/mavmrf/actions/workflows/tests.yml)
+[![Tests](https://github.com/FratresMedAI/mavmrf/actions/workflows/test-suite.yml/badge.svg)](https://github.com/FratresMedAI/mavmrf/actions/workflows/test-suite.yml)
 
 **Maritime Autonomous Vehicle Monitoring and Response Framework** — a simulation-first Python pipeline for multi-sensor maritime detect, track, and classify.
 
