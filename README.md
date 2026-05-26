@@ -1,6 +1,6 @@
 # MAVMRF
 
-[![CI](https://github.com/FratresMedAI/mavmrf/actions/workflows/ci.yml/badge.svg)](https://github.com/FratresMedAI/mavmrf/actions/workflows/ci.yml)
+[![Tests](https://github.com/FratresMedAI/mavmrf/actions/workflows/tests.yml/badge.svg)](https://github.com/FratresMedAI/mavmrf/actions/workflows/tests.yml)
 
 **Maritime Autonomous Vehicle Monitoring and Response Framework** — a simulation-first Python pipeline for multi-sensor maritime detect, track, and classify.
 
@@ -15,7 +15,7 @@ On a fresh clone, monitor mode uses **simulation detections by default** (no YOL
 - **Fusion & tracking** — IoU-matched object IDs, weighted fusion, SORT-style tracks
 - **Operator outputs** — bearing, estimated range, bearing rate, contact typing, change detection
 - **File replay** — JSON frames via `JsonFileSensorAdapter` (`incoming_data/samples/`)
-- **15 automated tests** + GitHub Actions CI
+- **Automated tests** + GitHub Actions CI
 
 ## Quick start
 
@@ -24,8 +24,11 @@ cd marmf
 python -m venv .venv
 .venv\Scripts\activate          # Windows
 pip install -r requirements.txt
+pip install -e .
 python main.py --mode monitor --duration 10 --num-objects 8 --no-trained
 ```
+
+Or run `scripts/demo.ps1` (Windows) / `scripts/demo.sh` (Linux/macOS).
 
 Reports include `detection_source` (`simulation`, `trained`, `pretrained`, or `explicit`).
 
@@ -51,16 +54,10 @@ python main.py --mode monitor
 
 ## Architecture
 
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for pipeline diagram, module map, and extension points.
+
 ```text
-Simulated / file streams
-        │
-        ▼
-  Preprocessing ──► detection (sim or YOLO + IoU match)
-        │                    │
-        └──────► Sensor fusion ◄── SORT tracking
-                        │
-                        ▼
-              Response engine + JSON / PNG reports
+Simulated / file streams → preprocess → detect → track → fuse → report
 ```
 
 ## Repository layout
@@ -68,15 +65,15 @@ Simulated / file streams
 | Path | Description |
 |------|-------------|
 | [`marmf/`](marmf/) | Core framework |
-| [`marmf/scripts/generate_dataset.py`](marmf/scripts/generate_dataset.py) | Synthetic YOLO dataset generator |
-| [`marmf/tests/`](marmf/tests/) | Pytest suite (unit + integration) |
-| [`docs/`](docs/) | Solution brief, capability matrix, demo script |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Pipeline and extension points |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Setup, tests, CI |
+| [`marmf/tests/`](marmf/tests/) | Pytest suite |
 
 Full CLI reference: [`marmf/README.md`](marmf/README.md).
 
 ## Tech stack
 
-Python 3.12 · OpenCV · NumPy · Ultralytics (YOLOv8) · PyTorch · Matplotlib · SciPy · pytest
+Python 3.12 · OpenCV · NumPy · Ultralytics (YOLOv8) · PyTorch · Matplotlib · SciPy · pytest · ruff
 
 ## Disclaimer
 

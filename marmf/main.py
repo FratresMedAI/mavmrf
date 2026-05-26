@@ -4,6 +4,7 @@ import logging
 from pathlib import Path
 from typing import Dict, Generator, Optional
 
+import cv2
 import numpy as np
 
 from config import INCOMING_SAMPLES_DIR, LOGGING, SIMULATION, TRACKING
@@ -38,7 +39,15 @@ def load_file_stream(incoming_dir: Path) -> Generator[Dict, None, None]:
         frame.setdefault("frame_id", idx)
         frame.setdefault("timestamp", float(idx))
         if "optical_frame" not in frame:
-            frame["optical_frame"] = np.zeros((640, 640, 3), dtype=np.uint8)
+            optical_image = frame.get("optical_image")
+            if optical_image:
+                image_path = (file.parent / optical_image).resolve()
+                loaded = cv2.imread(str(image_path))
+                frame["optical_frame"] = (
+                    loaded if loaded is not None else np.zeros((640, 640, 3), dtype=np.uint8)
+                )
+            else:
+                frame["optical_frame"] = np.zeros((640, 640, 3), dtype=np.uint8)
         yield frame
 
 

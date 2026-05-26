@@ -8,12 +8,15 @@ env/
 *.egg-info/
 dist/
 build/
+marmf/.pytest_cache/
+.pytest_cache/
 
 # Generated monitor outputs (regenerate with `python main.py --mode monitor`)
 marmf/reports/
 marmf/incoming_data/*.json
 !marmf/incoming_data/samples/
 !marmf/incoming_data/samples/*.json
+!marmf/incoming_data/samples/*.jpg
 
 # Generated YOLO dataset (regenerate with `python scripts/generate_dataset.py`)
 marmf/incoming_data/images/
@@ -26,6 +29,7 @@ marmf/incoming_data/labels/
 *.pt
 *.pth
 *.onnx
+yolov8n.pt
 runs/
 
 # Archives (regenerate locally if needed)

@@ -1,4 +1,4 @@
-name: CI
+name: Tests
 
 on:
   push:
@@ -7,18 +7,19 @@ on:
     branches: [master, main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-
-env:
-  MPLBACKEND: Agg
-
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
     defaults:
       run:
         working-directory: marmf
+
+    env:
+      MPLBACKEND: Agg
+      PYTHONUNBUFFERED: "1"
 
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +31,12 @@ jobs:
           cache-dependency-path: marmf/requirements.txt
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+
+      - name: Lint
+        run: ruff check .
 
       - name: Run tests
         run: pytest tests -q
@@ -38,10 +44,11 @@ jobs:
       - name: Generate dataset smoke
         run: python scripts/generate_dataset.py --train-frames 4 --val-frames 2 --num-objects 2 --clean
 
-      - name: Monitor smoke (simulation detection)
-        run: |
-          python main.py --mode monitor --duration 1 --num-objects 2 --no-trained 2>&1 | tee monitor.log
-          grep -q "Detection source: simulation" monitor.log
+      - name: Monitor smoke
+        run: python main.py --mode monitor --duration 1 --num-objects 2 --no-trained 2>&1 | tee monitor.log
+
+      - name: Assert simulation detection mode
+        run: grep -q "Detection source: simulation" monitor.log
 
       - name: File replay smoke
         run: python main.py --mode monitor --use-files --no-trained

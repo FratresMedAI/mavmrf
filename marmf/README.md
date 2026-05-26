@@ -51,7 +51,11 @@ marmf/
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
+pip install -r requirements-dev.txt
+pip install -e .
 ```
+
+See [`../CONTRIBUTING.md`](../CONTRIBUTING.md) for full dev setup.
 
 ## CLI Usage
 
@@ -83,6 +87,7 @@ Training validates that dataset images exist before starting.
 
 ```bash
 pytest tests -q
+ruff check .
 ```
 
 ## Output Artifacts
