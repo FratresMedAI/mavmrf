@@ -2,24 +2,29 @@ name: Tests
 
 on:
   push:
-    branches: [master, main]
+    branches:
+      - master
+      - main
   pull_request:
-    branches: [master, main]
-  workflow_dispatch: {}
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  MPLBACKEND: Agg
+  PYTHONUNBUFFERED: "1"
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     defaults:
       run:
         working-directory: marmf
-
-    env:
-      MPLBACKEND: Agg
-      PYTHONUNBUFFERED: "1"
 
     steps:
       - uses: actions/checkout@v4
