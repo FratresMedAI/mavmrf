@@ -2,8 +2,10 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 INCOMING_DATA_DIR = PROJECT_ROOT / "incoming_data"
+INCOMING_SAMPLES_DIR = INCOMING_DATA_DIR / "samples"
 REPORTS_DIR = PROJECT_ROOT / "reports"
 DATA_YAML = PROJECT_ROOT / "data.yaml"
+TRAINED_WEIGHTS = PROJECT_ROOT / "runs" / "mavmrf_yolo_training" / "weights" / "best.pt"
 
 CLASS_NAMES = [
     "large_uuv",
@@ -47,11 +49,11 @@ SIMULATION = {
 }
 
 DETECTION = {
-    "model_name": "yolov8l.pt",
+    "model_name": "yolov8n.pt",
     "img_size": 640,
     "conf_threshold": 0.35,
     "iou_threshold": 0.45,
-    "train_epochs": 20,
+    "train_epochs": 10,
     "batch_size": 8,
 }
 

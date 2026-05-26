@@ -1,42 +1,38 @@
 # Maritime Autonomous Vehicle Monitoring and Response Framework (MAVMRF)
 
-MAVMRF is a modular, simulation-first COTS Python framework for multi-sensor environmental monitoring and human-in-the-loop decision support in ports, harbors, waterways, and coastal zones.
+MAVMRF is a modular, simulation-first Python framework for multi-sensor environmental monitoring and human-in-the-loop decision support in ports, harbors, waterways, and coastal zones.
 
 ## Key Capabilities
-- Simulated and file-based multi-sensor streams (sonar, acoustic, optical, magnetic).
-- End-to-end workflow: Simulation -> Preprocessing -> YOLOv8 Detection -> Sensor Fusion -> SORT Tracking -> Notification Support.
-- Classification and object differentiation across marine object classes.
-- Operator-facing metrics in reports, including bearing, estimated range, and bearing rate.
-- Configurable clutter/false-alarm filtering sensitivity (`low`, `medium`, `high`).
-- Automatic JSON reports and Matplotlib visualizations.
 
-## Deployment and Extensibility
-MAVMRF is designed as a modular COTS-style prototype extensible to edge computing hardware and integration with fixed or mobile platforms for real-world maritime safety operations in ports, harbors, and coastal zones. The open architecture supports rapid testing and teaming with partners for platform integration or additional capabilities.
+- Simulated and file-based multi-sensor streams (sonar, acoustic, optical, magnetic)
+- End-to-end workflow: Simulation → Preprocessing → YOLOv8 Detection → Sensor Fusion → SORT Tracking → Notification Support
+- Classification across eight marine object classes
+- Operator-facing metrics: bearing, estimated range, bearing rate
+- Configurable clutter/false-alarm filtering (`low`, `medium`, `high`)
+- JSON reports and Matplotlib visualizations
 
 ## Project Structure
 
 ```text
 marmf/
 ├── requirements.txt
+├── pytest.ini
 ├── data.yaml
 ├── config.py
 ├── train.py
 ├── main.py
+├── scripts/
+│   └── generate_dataset.py
 ├── sensors/
-│   ├── simulation.py
-│   ├── preprocessing.py
-│   └── fusion.py
 ├── models/
-│   └── detection_model.py
 ├── tracking/
-│   └── tracker.py
 ├── response/
-│   └── response_engine.py
 ├── utils/
-│   └── visualization.py
+├── interfaces/
 ├── incoming_data/
-├── reports/
-├── README.md
+│   └── samples/          # committed JSON replay fixtures
+├── tests/
+├── reports/              # generated locally
 └── run.bat
 ```
 
@@ -51,47 +47,50 @@ marmf/
 
 ## CLI Usage
 
-### 1) Monitor mode (default: LIVE simulated streams)
-
-Run a live simulated monitoring session:
+### Monitor mode (default: live simulated stream)
 
 ```bash
 python main.py --mode monitor
-```
-
-Run with custom simulation parameters:
-
-```bash
 python main.py --mode monitor --duration 60 --num-objects 12
-```
-
-Use optional file-based input from `incoming_data/` (secondary/fallback mode):
-
-```bash
-python main.py --mode monitor --use-files
-```
-
-Use filter sensitivity tuning for clutter reduction behavior:
-
-```bash
 python main.py --mode monitor --filter-sensitivity high
 ```
 
-### 2) Train mode (YOLOv8)
+### Weights resolution
+
+Detection model path is resolved in order:
+
+1. `--weights PATH` if provided
+2. `runs/mavmrf_yolo_training/weights/best.pt` if present
+3. `yolov8n.pt` (pretrained)
 
 ```bash
+python main.py --mode monitor --weights runs/mavmrf_yolo_training/weights/best.pt
+```
+
+If YOLO inference fails or returns no boxes, simulation-provided detections are used as fallback.
+
+### File replay (JsonFileSensorAdapter)
+
+```bash
+python main.py --mode monitor --use-files
+python main.py --mode monitor --use-files --incoming-dir incoming_data/samples
+```
+
+Sample frames are included under `incoming_data/samples/`.
+
+### Train mode
+
+Generate a synthetic dataset, then train:
+
+```bash
+python scripts/generate_dataset.py --clean
 python main.py --mode train
+python train.py --data data.yaml --epochs 10
 ```
 
-Or directly:
-
-```bash
-python train.py --data data.yaml
-```
+`python main.py --mode train` calls the same training entrypoint without argparse conflicts.
 
 ## Data Classes (`data.yaml`)
-
-The model differentiates these observed marine object categories:
 
 1. `large_uuv`
 2. `small_rov`
@@ -106,29 +105,27 @@ The model differentiates these observed marine object categories:
 
 Tune parameters in `config.py`:
 
-- Simulation world size, depth, object density behavior, and noise reduction settings.
-- Sensor fusion weights for combined state estimation.
-- Detection confidence/IoU thresholds.
-- Tracking association and lifecycle parameters.
-- Response proximity-based notification thresholds.
-- Filter sensitivity controls for clutter/false-alarm handling.
+- Simulation world size, object density, noise, filter sensitivity
+- Sensor fusion weights
+- Detection confidence/IoU thresholds
+- Tracking association parameters
+- Response proximity thresholds
 
 ## Output Artifacts
 
 Monitor runs generate outputs in `reports/`:
 
-- `report_frame_XXXXX.json` containing:
-  - detections and fused object states,
-  - bearing / estimated range / bearing rate fields,
-  - contact type differentiation (`biological_like`, `non_biological_like`, `unknown`),
-  - track history,
-  - change detection (`new`/`moving`) for observed objects,
-  - simulated notification/advisory entries.
-- `visualization_frame_XXXXX.png` containing:
-  - tracked trajectories,
-  - fused state points.
+- `report_frame_XXXXX.json` — detections, fused states, bearing/range/bearing_rate, tracks, notifications
+- `visualization_frame_XXXXX.png` — track trajectories and fused positions
+
+## Tests
+
+```bash
+pytest tests -q
+```
 
 ## Notes
-- This is a simulation-first COTS prototype focused on detect, track, and classify capabilities.
-- An open adapter contract is included in `interfaces/sensor_adapter.py` for fixed/mobile integration pathways.
-- Open to collaboration with partners providing platform deployment or additional monitoring capabilities.
+
+- Simulation-first prototype focused on detect, track, and classify pipeline architecture
+- `interfaces/sensor_adapter.py` defines the integration contract for fixed/mobile feeds
+- See [`OVERVIEW.md`](OVERVIEW.md) for a concise technical summary

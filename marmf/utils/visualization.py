@@ -35,9 +35,9 @@ def plot_tracking_and_fusion(track_history: List[Dict], fused_objects: List[Dict
                 color="white",
             )
 
-    ax.set_title("Marine Object Tracking and Fused Positions for Monitoring Support")
-    ax.set_xlabel("X Position for Monitoring Support in Complex Marine Environments")
-    ax.set_ylabel("Y Position for Monitoring Support in Complex Marine Environments")
+    ax.set_title("Marine Object Tracking and Fused Positions")
+    ax.set_xlabel("X position")
+    ax.set_ylabel("Y position")
     ax.grid(True, alpha=0.3)
     if len(track_history) <= 10 and track_history:
         ax.legend(loc="best", fontsize=8)

@@ -1,9 +1,9 @@
-ultralytics
+ultralytics>=8.3.0,<8.5
+torch>=2.5.0,<2.6
+torchvision>=0.20.0,<0.21
 opencv-python
 numpy
-pandas
 scipy
 matplotlib
 pyyaml
-scikit-learn
-rasterio
+pytest

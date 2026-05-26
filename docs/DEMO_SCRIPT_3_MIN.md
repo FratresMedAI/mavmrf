@@ -20,7 +20,7 @@
 
 ## 2:10-2:40 | Evidence
 
-"Runs produce structured JSON reports and time-indexed visualizations — you can see track development and fused state consistency across frames in `marmf/reports/`."
+"Runs produce structured JSON reports and time-indexed visualizations in `marmf/reports/`. By default the live simulator drives the pipeline; optionally run with fine-tuned weights via `--weights runs/mavmrf_yolo_training/weights/best.pt` after synthetic training."
 
 ## 2:40-3:00 | Close
 

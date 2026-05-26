@@ -1,6 +1,6 @@
 import json
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List
 
@@ -20,6 +20,7 @@ class ResponseEngine:
 
     @staticmethod
     def _contact_type(class_name: str) -> str:
+        # Demo heuristic only — not operational biological/non-biological classification.
         biological_like = {"debris_cluster"}
         if class_name in biological_like:
             return "biological_like"
@@ -87,7 +88,7 @@ class ResponseEngine:
             )
 
         report = {
-            "generated_at": datetime.utcnow().isoformat() + "Z",
+            "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
             "timestamp": timestamp,
             "detections_count": len(fused_objects),
             "changes": changes,

@@ -19,7 +19,7 @@ Maps MAVMRF capabilities to detect, track, and classify requirements.
   - Evidence: `models/detection_model.py`, `data.yaml` 8 classes, and class outputs in monitoring reports.
 
 - Differentiation support (biological-like vs non-biological-like)
-  - Status: Implemented
+  - Status: Implemented (demo heuristic)
   - Evidence: `response/response_engine.py` includes `contact_type` field (`biological_like`, `non_biological_like`, `unknown`).
 
 - Clutter/false-alarm reduction with sensitivity control
@@ -36,5 +36,8 @@ Maps MAVMRF capabilities to detect, track, and classify requirements.
 
 ## Runtime Validation
 
-- Command: `python main.py --mode monitor --duration 2 --num-objects 3 --filter-sensitivity high`
-- Result: Successful end-to-end run with generated reports and visualizations.
+- Command: `pytest tests -q`
+- Monitor: `python main.py --mode monitor --duration 2 --num-objects 3 --filter-sensitivity high`
+- File replay: `python main.py --mode monitor --use-files`
+- Optional trained weights: `python main.py --mode monitor --weights runs/mavmrf_yolo_training/weights/best.pt`
+- Result: Successful end-to-end runs with generated reports and visualizations.

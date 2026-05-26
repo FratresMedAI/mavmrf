@@ -12,6 +12,12 @@ build/
 # Generated monitor outputs (regenerate with `python main.py --mode monitor`)
 marmf/reports/
 marmf/incoming_data/*.json
+!marmf/incoming_data/samples/
+!marmf/incoming_data/samples/*.json
+
+# Generated YOLO dataset (regenerate with `python scripts/generate_dataset.py`)
+marmf/incoming_data/images/
+marmf/incoming_data/labels/
 
 # Duplicate frozen submission copies (canonical source is `marmf/`)
 **/submission_package/

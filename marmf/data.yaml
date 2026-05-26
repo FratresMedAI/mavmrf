@@ -1,3 +1,4 @@
+# YOLO dataset paths (generate with: python scripts/generate_dataset.py)
 path: .
 train: incoming_data/images/train
 val: incoming_data/images/val

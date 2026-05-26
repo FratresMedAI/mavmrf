@@ -1,25 +1,39 @@
 import argparse
 import logging
+from pathlib import Path
+from typing import Optional
 
-from config import DATA_YAML, LOGGING, PROJECT_ROOT
+from config import DATA_YAML, DETECTION, LOGGING, PROJECT_ROOT
 from models.detection_model import train_model
+
+LOGGER = logging.getLogger(__name__)
 
 
 def setup_logging() -> None:
     logging.basicConfig(level=LOGGING["level"], format=LOGGING["format"])
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Train MAVMRF YOLO model")
-    parser.add_argument("--data", default=str(DATA_YAML), help="Path to YOLO data.yaml")
-    args = parser.parse_args()
-
-    setup_logging()
-    data_path = DATA_YAML.__class__(args.data)
+def run(data_yaml: Optional[Path] = None, epochs: Optional[int] = None) -> None:
+    data_path = data_yaml or DATA_YAML
     if not data_path.exists():
         raise FileNotFoundError(f"data.yaml not found: {data_path}")
 
-    train_model(data_yaml=data_path, project_root=PROJECT_ROOT)
+    train_model(data_yaml=data_path, project_root=PROJECT_ROOT, epochs=epochs)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Train MAVMRF YOLO model")
+    parser.add_argument("--data", default=str(DATA_YAML), help="Path to YOLO data.yaml")
+    parser.add_argument(
+        "--epochs",
+        type=int,
+        default=DETECTION["train_epochs"],
+        help="Training epochs",
+    )
+    args = parser.parse_args()
+
+    setup_logging()
+    run(data_yaml=Path(args.data), epochs=args.epochs)
 
 
 if __name__ == "__main__":
