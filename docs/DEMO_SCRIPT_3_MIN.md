@@ -10,7 +10,7 @@
 
 ## 0:50-1:35 | Technical Walkthrough
 
-"The runtime pipeline is: ingestion from sonar, acoustic, optical, and magnetic streams; preprocessing with clutter filtering; YOLO-based detection and classification; weighted multi-sensor fusion; SORT-style persistent tracking; and rule-based report generation."
+"The runtime pipeline is: ingestion from sonar, acoustic, optical, and magnetic streams; preprocessing with clutter filtering; detection (simulation by default, or YOLO with `--pretrained`/trained weights); IoU-matched multi-sensor fusion; SORT-style persistent tracking; and rule-based report generation."
 
 "Each frame outputs key operator fields: bearing, estimated range, bearing rate, class and confidence, track ID and history, and contact type differentiation."
 
