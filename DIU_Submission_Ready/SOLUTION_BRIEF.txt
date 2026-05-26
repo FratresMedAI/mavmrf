@@ -1,0 +1,60 @@
+# SOLUTION BRIEF
+
+## Project
+Maritime Autonomous Vehicle Monitoring and Response Framework (MAVMRF)
+
+## Solicitation Alignment
+DIU Robotic Exclusion & Engagement Framework (REEF)  
+Solution Component 1: Detect, Track, and Classify Capabilities
+
+## Solution Overview
+MAVMRF is a modular, simulation-first Python framework for maritime monitoring and operator decision support. It provides an end-to-end pipeline that ingests multi-sensor inputs, performs AI-assisted object detection and classification, fuses observations, maintains track continuity, and publishes operator-facing reports and visualizations.
+
+Core pipeline:
+- Multi-sensor input (sonar, acoustic, optical, magnetic)
+- Preprocessing and configurable clutter filtering
+- Detection/classification (YOLOv8 wrapper, marine classes)
+- Weighted multi-sensor fusion
+- SORT-style multi-object tracking
+- Rule-based advisory/report generation
+
+## Component 1 Capabilities
+- **Detect:** Produces per-contact detection outputs from multi-sensor streams with frame-by-frame reporting.
+- **Track:** Maintains persistent track IDs and trajectory history through time.
+- **Classify:** Supports 8 marine classes and report-level contact type differentiation (`biological_like`, `non_biological_like`, `unknown`).
+
+Operator-facing report fields include:
+- `bearing`
+- `estimated_range`
+- `bearing_rate`
+- class label and confidence
+- track identity/history
+
+## Technical Differentiators
+- Multi-sensor fusion for more stable state estimates.
+- Tunable clutter/false-alarm sensitivity via CLI (`--filter-sensitivity low|medium|high`).
+- Open architecture adapter contract for fixed/mobile sensor feed integration (`interfaces/sensor_adapter.py`).
+- Structured JSON outputs plus visual track artifacts for rapid operator interpretation.
+
+## Evidence Included
+The submission package includes representative early/mid/late artifacts:
+- `evidence/visualization_frame_00005.png`
+- `evidence/visualization_frame_00020.png`
+- `evidence/visualization_frame_00040.png`
+- matching `report_frame_00005.json`, `report_frame_00020.json`, `report_frame_00040.json`
+
+## Current Readiness
+MAVMRF is submission-ready as a working Component 1 prototype with:
+- implemented detect-track-classify pipeline,
+- operator decision-support metrics,
+- biological/non-biological differentiation,
+- configurable clutter filtering,
+- open-architecture sensor adapter interface,
+- curated evidence artifacts and compliance mapping.
+
+## Path to Deployment
+Immediate follow-on work supports rapid transition to field use:
+1. Integrate live platform sensor feeds through adapter implementations.
+2. Calibrate thresholds against representative operational datasets.
+3. Deploy and benchmark on edge hardware for sustained runtime performance.
+4. Expand evaluation under varied coastal/harbor environmental conditions.

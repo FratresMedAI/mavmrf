@@ -1,0 +1,12 @@
+path: .
+train: incoming_data/images/train
+val: incoming_data/images/val
+names:
+  0: large_uuv
+  1: small_rov
+  2: semi_submersible
+  3: research_glider
+  4: commercial_drone
+  5: unidentified_object
+  6: surface_buoy
+  7: debris_cluster

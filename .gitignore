@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Generated monitor outputs (regenerate with `python main.py --mode monitor`)
+marmf/reports/
+marmf/incoming_data/*.json
+
+# Duplicate frozen submission copies (canonical source is `marmf/`)
+**/submission_package/
+
+# Models / local weights (download or train separately)
+*.pt
+*.pth
+*.onnx
+runs/
+
+# Environment and secrets
+.env
+.env.*
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
