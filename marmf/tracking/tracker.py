@@ -1,9 +1,8 @@
 from dataclasses import dataclass, field
 from typing import Dict, List
 
-import numpy as np
-
 from config import TRACKING
+from utils.bbox import iou
 
 
 @dataclass
@@ -23,19 +22,6 @@ class SortStyleTracker:
         self.next_id = 1
         self.tracks: List[Track] = []
 
-    @staticmethod
-    def _iou(box_a: List[float], box_b: List[float]) -> float:
-        x1 = max(box_a[0], box_b[0])
-        y1 = max(box_a[1], box_b[1])
-        x2 = min(box_a[2], box_b[2])
-        y2 = min(box_a[3], box_b[3])
-
-        inter = max(0, x2 - x1) * max(0, y2 - y1)
-        area_a = max(0, box_a[2] - box_a[0]) * max(0, box_a[3] - box_a[1])
-        area_b = max(0, box_b[2] - box_b[0]) * max(0, box_b[3] - box_b[1])
-        denom = area_a + area_b - inter
-        return inter / denom if denom > 0 else 0.0
-
     def update(self, detections: List[Dict], timestamp: float) -> List[Dict]:
         if not detections:
             for track in self.tracks:
@@ -49,7 +35,7 @@ class SortStyleTracker:
             for idx, det in enumerate(detections):
                 if idx in assigned:
                     continue
-                score = self._iou(track.bbox, det["bbox"])
+                score = iou(track.bbox, det["bbox"])
                 if score > best_iou:
                     best_iou = score
                     best_idx = idx

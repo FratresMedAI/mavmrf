@@ -21,3 +21,4 @@ def test_response_report_contains_operator_fields():
     obj = report["fused_objects"][0]
     for field in ("bearing", "estimated_range", "bearing_rate", "contact_type"):
         assert field in obj
+    assert report["detection_source"] == "simulation"

@@ -4,18 +4,18 @@
 
 **Maritime Autonomous Vehicle Monitoring and Response Framework** — a simulation-first Python pipeline for multi-sensor maritime detect, track, and classify.
 
-The default demo runs on a **live simulated sensor stream**. YOLOv8 inference is enabled with pinned dependencies; simulation-provided detections remain as fallback when inference returns no boxes.
+On a fresh clone, monitor mode uses **simulation detections by default** (no YOLO download). YOLO is opt-in via training, `--pretrained`, or `--weights`.
 
 ![Monitor output](docs/screenshots/monitor_frame.png)
 
 ## Highlights
 
 - **Multi-sensor simulation** — sonar, acoustic, optical, and magnetic streams
-- **YOLOv8 detection** — pretrained `yolov8n.pt` by default; optional fine-tuning on synthetic data
-- **Fusion & tracking** — weighted multi-sensor fusion and SORT-style persistent tracks
+- **Honest detection modes** — simulation default; YOLO when trained or explicitly requested
+- **Fusion & tracking** — IoU-matched object IDs, weighted fusion, SORT-style tracks
 - **Operator outputs** — bearing, estimated range, bearing rate, contact typing, change detection
 - **File replay** — JSON frames via `JsonFileSensorAdapter` (`incoming_data/samples/`)
-- **Configurable clutter filtering** — `--filter-sensitivity low|medium|high`
+- **15 automated tests** + GitHub Actions CI
 
 ## Quick start
 
@@ -24,10 +24,21 @@ cd marmf
 python -m venv .venv
 .venv\Scripts\activate          # Windows
 pip install -r requirements.txt
-python main.py --mode monitor --duration 30 --num-objects 8
+python main.py --mode monitor --duration 10 --num-objects 8 --no-trained
 ```
 
-Reports and plots are written to `marmf/reports/` (gitignored locally).
+Reports include `detection_source` (`simulation`, `trained`, `pretrained`, or `explicit`).
+
+## Detection modes
+
+| Mode | How to enable |
+|------|----------------|
+| `simulation` (default) | No flags; uses simulator optical detections |
+| `trained` | After `main.py --mode train`; auto-loads `best.pt` |
+| `pretrained` | `--pretrained` (downloads `yolov8n.pt`) |
+| `explicit` | `--weights PATH` |
+
+Use `--no-trained` to skip auto-loading local trained weights.
 
 ## Optional: train on synthetic data
 
@@ -35,7 +46,7 @@ Reports and plots are written to `marmf/reports/` (gitignored locally).
 cd marmf
 python scripts/generate_dataset.py --clean
 python main.py --mode train
-python main.py --mode monitor --weights runs/mavmrf_yolo_training/weights/best.pt
+python main.py --mode monitor
 ```
 
 ## Architecture
@@ -44,7 +55,7 @@ python main.py --mode monitor --weights runs/mavmrf_yolo_training/weights/best.p
 Simulated / file streams
         │
         ▼
-  Preprocessing ──► YOLOv8 detection
+  Preprocessing ──► detection (sim or YOLO + IoU match)
         │                    │
         └──────► Sensor fusion ◄── SORT tracking
                         │
@@ -56,9 +67,9 @@ Simulated / file streams
 
 | Path | Description |
 |------|-------------|
-| [`marmf/`](marmf/) | Core framework — sensors, models, tracking, response |
+| [`marmf/`](marmf/) | Core framework |
 | [`marmf/scripts/generate_dataset.py`](marmf/scripts/generate_dataset.py) | Synthetic YOLO dataset generator |
-| [`marmf/tests/`](marmf/tests/) | Pytest smoke tests |
+| [`marmf/tests/`](marmf/tests/) | Pytest suite (unit + integration) |
 | [`docs/`](docs/) | Solution brief, capability matrix, demo script |
 
 Full CLI reference: [`marmf/README.md`](marmf/README.md).

@@ -2,11 +2,11 @@ import argparse
 import json
 import logging
 from pathlib import Path
-from typing import Dict, Generator, List, Optional
+from typing import Dict, Generator, Optional
 
 import numpy as np
 
-from config import INCOMING_SAMPLES_DIR, LOGGING, SIMULATION
+from config import INCOMING_SAMPLES_DIR, LOGGING, SIMULATION, TRACKING
 from interfaces.sensor_adapter import JsonFileSensorAdapter
 from models.detection_model import DetectionModel
 from response.response_engine import ResponseEngine
@@ -15,6 +15,7 @@ from sensors.preprocessing import SensorPreprocessor
 from sensors.simulation import MultiSensorSimulator
 from tracking.tracker import SortStyleTracker
 from train import run as run_train
+from utils.bbox import attach_track_ids
 from utils.visualization import plot_tracking_and_fusion
 
 LOGGER = logging.getLogger(__name__)
@@ -52,9 +53,15 @@ def run_monitor(
     num_objects: int,
     filter_sensitivity: str,
     weights: Optional[str] = None,
+    use_pretrained: bool = False,
+    allow_trained: bool = True,
     incoming_dir: Optional[Path] = None,
 ) -> None:
-    detector = DetectionModel(weights=weights)
+    detector = DetectionModel(
+        weights=weights,
+        use_pretrained=use_pretrained,
+        allow_trained=allow_trained,
+    )
     pre = SensorPreprocessor(filter_sensitivity=filter_sensitivity)
     fusion = MultiSensorFusion()
     tracker = SortStyleTracker()
@@ -83,11 +90,7 @@ def run_monitor(
         detections = tracker.update(detections, timestamp=prepared["timestamp"])
         fused = fusion.fuse(prepared, detections)
 
-        for obj in fused:
-            for det in detections:
-                if obj.get("bbox") == det.get("bbox"):
-                    obj["track_id"] = det.get("track_id")
-                    break
+        attach_track_ids(fused, detections, threshold=TRACKING["iou_match_threshold"])
 
         track_history = tracker.export_track_history()
         report = responder.evaluate(
@@ -95,6 +98,7 @@ def run_monitor(
             fused_objects=fused,
             track_history=track_history,
             changes=prepared.get("changes", []),
+            detection_source=detector.source,
         )
         responder.save_report(report, frame_id=int(prepared["frame_id"]))
         plot_tracking_and_fusion(track_history, fused, frame_id=int(prepared["frame_id"]))
@@ -140,7 +144,17 @@ def parse_args() -> argparse.Namespace:
         "--weights",
         type=str,
         default=None,
-        help="YOLO weights path (default: trained best.pt if present, else yolov8n.pt)",
+        help="Explicit YOLO weights path (detection source: explicit)",
+    )
+    parser.add_argument(
+        "--pretrained",
+        action="store_true",
+        help="Use pretrained yolov8n.pt when no trained weights are present",
+    )
+    parser.add_argument(
+        "--no-trained",
+        action="store_true",
+        help="Do not auto-load local runs/mavmrf_yolo_training/weights/best.pt",
     )
     parser.add_argument(
         "--epochs",
@@ -165,6 +179,8 @@ def main() -> None:
                 num_objects=args.num_objects,
                 filter_sensitivity=args.filter_sensitivity,
                 weights=args.weights,
+                use_pretrained=args.pretrained,
+                allow_trained=not args.no_trained,
                 incoming_dir=args.incoming_dir,
             )
     except Exception as exc:

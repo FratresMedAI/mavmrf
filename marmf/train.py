@@ -3,10 +3,27 @@ import logging
 from pathlib import Path
 from typing import Optional
 
-from config import DATA_YAML, DETECTION, LOGGING, PROJECT_ROOT
+from config import DATA_YAML, DETECTION, INCOMING_DATA_DIR, LOGGING, PROJECT_ROOT
 from models.detection_model import train_model
 
 LOGGER = logging.getLogger(__name__)
+
+DATASET_HINT = "Run `python scripts/generate_dataset.py --clean` first."
+
+
+def validate_dataset() -> None:
+    train_images = INCOMING_DATA_DIR / "images" / "train"
+    val_images = INCOMING_DATA_DIR / "images" / "val"
+
+    missing = []
+    for split, path in (("train", train_images), ("val", val_images)):
+        if not path.exists() or not any(path.glob("*.jpg")):
+            missing.append(split)
+
+    if missing:
+        raise FileNotFoundError(
+            f"Missing YOLO dataset images for: {', '.join(missing)}. {DATASET_HINT}"
+        )
 
 
 def setup_logging() -> None:
@@ -18,6 +35,7 @@ def run(data_yaml: Optional[Path] = None, epochs: Optional[int] = None) -> None:
     if not data_path.exists():
         raise FileNotFoundError(f"data.yaml not found: {data_path}")
 
+    validate_dataset()
     train_model(data_yaml=data_path, project_root=PROJECT_ROOT, epochs=epochs)
 
 

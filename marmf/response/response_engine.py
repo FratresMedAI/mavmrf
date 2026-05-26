@@ -54,8 +54,14 @@ class ResponseEngine:
             return "notification"
         return "log"
 
-    def evaluate(self, timestamp: float, fused_objects: List[Dict], track_history: List[Dict], changes: List[Dict]) -> Dict:
-        # Generates advisories based on proximity and confidence to support safe maritime decision making.
+    def evaluate(
+        self,
+        timestamp: float,
+        fused_objects: List[Dict],
+        track_history: List[Dict],
+        changes: List[Dict],
+        detection_source: str = "simulation",
+    ) -> Dict:
         notifications = []
         enriched_fused_objects = []
         for obj in fused_objects:
@@ -68,6 +74,10 @@ class ResponseEngine:
                 "contact_type": self._contact_type(class_name),
             }
             enriched_fused_objects.append(enriched_obj)
+
+            if level == "log":
+                continue
+
             track_id = obj.get("track_id")
             key = f"{class_name}:{track_id}"
             last_time = self.last_notifications.get(key)
@@ -90,6 +100,7 @@ class ResponseEngine:
         report = {
             "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
             "timestamp": timestamp,
+            "detection_source": detection_source,
             "detections_count": len(fused_objects),
             "changes": changes,
             "fused_objects": enriched_fused_objects,

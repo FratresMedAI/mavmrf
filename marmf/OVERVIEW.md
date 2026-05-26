@@ -1,31 +1,30 @@
 # MAVMRF Overview
 
-MAVMRF is a modular, simulation-first COTS Python framework for maritime environmental monitoring and human-in-the-loop decision support.
+MAVMRF is a modular, simulation-first Python framework for maritime environmental monitoring and human-in-the-loop decision support.
 
-## Core Technical Approach
+## Detection modes
 
-- Multi-sensor streams (sonar, acoustic, optical, magnetic) with preprocessing and weighted fusion
-- YOLOv8 detection with simulation fallback detections
-- SORT-style multi-object tracking with trajectory history and change detection
-- Rule-based notification/advisory output with structured JSON reporting
-- Operator-facing metrics: bearing, estimated range, and bearing rate
-- Configurable clutter/false-alarm filter sensitivity (`low`, `medium`, `high`)
+| Source | When |
+|--------|------|
+| `simulation` | Default on fresh clone — uses simulator `optical_detections` |
+| `trained` | After synthetic dataset training (`best.pt` exists) |
+| `pretrained` | User passes `--pretrained` |
+| `explicit` | User passes `--weights PATH` |
 
-## Getting to Trained Inference
+Reports record `detection_source` on every frame.
 
-1. Generate synthetic labels from the simulator:
-   `python scripts/generate_dataset.py --clean`
-2. Train:
-   `python main.py --mode train`
-3. Run monitor with fine-tuned weights:
-   `python main.py --mode monitor --weights runs/mavmrf_yolo_training/weights/best.pt`
+## Core pipeline
 
-## Integration
+- Multi-sensor streams with preprocessing and weighted fusion
+- IoU-based detection matching and track ID assignment
+- SORT-style tracking with trajectory history
+- Rule-based notifications (advisory/notification levels only)
+- Structured JSON + Matplotlib outputs
 
-- Open adapter contract in `interfaces/sensor_adapter.py` for fixed/mobile platform integration
-- File replay via `JsonFileSensorAdapter` and JSON frames in `incoming_data/samples/`
-- Modular architecture suitable for edge compute deployments
+## Getting to trained inference
 
-## Path Forward
+1. `python scripts/generate_dataset.py --clean`
+2. `python main.py --mode train`
+3. `python main.py --mode monitor` (auto-loads trained weights)
 
-Live sensor adapters, calibration on representative datasets, and sustained edge runtime benchmarking.
+Use `--no-trained` to force simulation detections even when `best.pt` exists.

@@ -23,7 +23,7 @@ SIMULATION = {
     "world_height": 1000.0,
     "depth_min": 5.0,
     "depth_max": 120.0,
-    "default_duration_sec": 40,
+    "default_duration_sec": 10,
     "fps": 5,
     "default_num_objects": 8,
     "max_speed_mps": 4.0,
@@ -48,6 +48,7 @@ SIMULATION = {
     },
 }
 
+# Default monitor mode uses simulation detections unless trained weights exist or flags override.
 DETECTION = {
     "model_name": "yolov8n.pt",
     "img_size": 640,
