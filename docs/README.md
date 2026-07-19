@@ -10,8 +10,10 @@
 | [screenshots/monitor_frame.png](screenshots/monitor_frame.png) | Sample monitor visualization |
 | [samples/report_frame_00005.json](samples/report_frame_00005.json) | Sample operator report JSON |
 | [benchmarks/](benchmarks/) | Seeded reproducible simulation gates |
-| [SITE_CARD.md](SITE_CARD.md) | Paste-ready fratres-x.com Selected Work card |
+| [RELATED_WORK.md](RELATED_WORK.md) | Surveys, Autoferry, harbour trackers |
+| [ZENODO_SETUP.md](ZENODO_SETUP.md) | Zenodo DOI one-time setup |
 | [PROFILE_SETUP.md](PROFILE_SETUP.md) | Manual GitHub pin + website checklist |
+| [SITE_CARD.md](SITE_CARD.md) | Optional site card copy (not required) |
 
 ## Related root docs
 

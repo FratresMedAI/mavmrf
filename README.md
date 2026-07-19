@@ -29,6 +29,7 @@ On a fresh clone, monitor mode uses **simulation detections by default** (no YOL
 - [Design decisions and tradeoffs](#design-decisions-and-tradeoffs)
 - [What we would change next](#what-we-would-change-next)
 - [Seeded benchmark](#seeded-benchmark)
+- [Related work](#related-work)
 - [Related Fratres X threads](#related-fratres-x-threads)
 - [Documentation](#documentation)
 - [Repository layout](#repository-layout)
@@ -166,9 +167,19 @@ python scripts/benchmark.py --seed 42 --duration 5 --num-objects 6
 
 Results live in [`docs/benchmarks/`](docs/benchmarks/) (`README.md` + `seeded_run.json`).
 
+## Related work
+
+MAVMRF is a simulation-first lab baseline. Domain surveys and open trackers that situate the design:
+
+- Survey: [Multi-sensor data fusion in maritime surveillance](https://peerj.com/articles/cs-3765) (PeerJ) — fusion methods; YOLO + tracking as common optical paths.
+- Benchmark: [Autoferry sensor fusion dataset](https://github.com/Autoferry/sensor_fusion_dataset) — multi-sensor MOT fixtures with ground truth.
+- Validated tracker: [harbour-multi-sensor-tracking](https://github.com/elifpulukcu/harbour-multi-sensor-tracking) — radar/camera/AIS/GNSS + EKF/Hungarian, sim + harbour runs.
+
+Full comparison table: [`docs/RELATED_WORK.md`](docs/RELATED_WORK.md).
+
 ## Related Fratres X threads
 
-Sibling lab threads on [fratres-x.com](https://fratres-x.com) (Selected Work) — same posture: physics-first modeling, conservative maturity labels, reviewable prototypes.
+Sibling lab threads on [fratres-x.com](https://fratres-x.com) — same posture: physics-first modeling, conservative maturity labels, reviewable prototypes.
 
 | Thread | Focus |
 |--------|--------|
@@ -176,7 +187,7 @@ Sibling lab threads on [fratres-x.com](https://fratres-x.com) (Selected Work) �
 | [Anti Edge Node](https://fratres-x.com) | Defensive sensing — acoustic / RF / visual fusion, audit logs, field-node concept |
 | [HYPERLINK](https://fratres-x.com) | Missile-defense modeling — imperfect model constellations, uncertainty, simulation |
 
-Site card copy for listing MAVMRF itself: [`docs/SITE_CARD.md`](docs/SITE_CARD.md). Profile pin checklist: [`docs/PROFILE_SETUP.md`](docs/PROFILE_SETUP.md).
+Profile pin checklist: [`docs/PROFILE_SETUP.md`](docs/PROFILE_SETUP.md).
 
 ## Documentation
 
@@ -184,7 +195,9 @@ Site card copy for listing MAVMRF itself: [`docs/SITE_CARD.md`](docs/SITE_CARD.m
 |-----|-------------|
 | [docs/README.md](docs/README.md) | Documentation index |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Pipeline and extension points |
+| [docs/RELATED_WORK.md](docs/RELATED_WORK.md) | Surveys, benchmarks, how MAVMRF fits |
 | [docs/benchmarks/](docs/benchmarks/) | Seeded reproducible gates |
+| [docs/ZENODO_SETUP.md](docs/ZENODO_SETUP.md) | Mint a Zenodo DOI for releases |
 | [docs/SOLUTION_BRIEF.md](docs/SOLUTION_BRIEF.md) | Executive narrative |
 | [docs/capability_matrix.md](docs/capability_matrix.md) | Capability → evidence |
 | [docs/DEMO_SCRIPT_3_MIN.md](docs/DEMO_SCRIPT_3_MIN.md) | Demo script |

@@ -53,7 +53,7 @@ It sits next to Fratres defensive-sensing / contested-autonomy prototypes (multi
 
 ## Extension points
 
-- **Live sensors:** implement `SensorAdapter.stream()` yielding frames with `sonar`, `acoustic`, `magnetic`, `optical_frame` or `optical_detections`
+- **Live / recorded sensors:** implement [`SensorAdapter`](../marmf/interfaces/sensor_adapter.py) — JSON file replay ships today; **AIS replay**, **radar replay**, and multi-rate timestamp sync are the documented next adapters (NMEA/JSON AIS tracks, CFAR/tracklets → common contact space). See module docstring and [`RELATED_WORK.md`](RELATED_WORK.md).
 - **Training data:** `scripts/generate_dataset.py` exports YOLO labels from the simulator
 - **File replay:** JSON under `incoming_data/samples/`; optional `optical_image` sidecar JPG
 - **Gates:** `scripts/benchmark.py` writes seeded metrics under [`docs/benchmarks/`](benchmarks/)
