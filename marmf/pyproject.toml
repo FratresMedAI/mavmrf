@@ -30,7 +30,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Image Recognition",
 ]
 dependencies = [
-    "ultralytics==8.4.30",
+    "ultralytics==8.4.102",
     "torch==2.5.1",
     "torchvision==0.20.1",
     "opencv-python==4.13.0.92",
