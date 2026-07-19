@@ -1,17 +1,17 @@
+# Dependabot version PRs disabled — MAVMRF pins deps on purpose for a stable
+# clone-and-run portfolio stack. Re-enable later with coordinated upgrade testing.
+#
+# Security alerts can still be enabled under Settings → Code security.
 version: 2
 updates:
   - package-ecosystem: pip
     directory: /marmf
     schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
-    labels:
-      - dependencies
+      interval: monthly
+    open-pull-requests-limit: 0
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
-    labels:
-      - dependencies
+      interval: monthly
+    open-pull-requests-limit: 0
