@@ -57,6 +57,8 @@ pip install -e .
 
 See [`../CONTRIBUTING.md`](../CONTRIBUTING.md) for full dev setup.
 
+**Local demo (no hosted UI):** `scripts/demo.ps1` (Windows) or `scripts/demo.sh` (Linux/macOS). Built by [Fratres X AI](https://fratres-x.com).
+
 ## CLI Usage
 
 ### Monitor (live simulation)

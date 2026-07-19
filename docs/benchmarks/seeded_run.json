@@ -1,0 +1,18 @@
+{
+  "generated_at_utc": "2026-07-19T17:40:55.885046+00:00",
+  "seed": 42,
+  "duration_sec": 5,
+  "num_objects": 6,
+  "filter_sensitivity": "medium",
+  "detection_source": "simulation",
+  "frames_processed": 25,
+  "elapsed_sec": 0.89,
+  "frames_per_sec": 28.08,
+  "unique_track_ids": 6,
+  "total_fused_object_observations": 150,
+  "mean_fused_per_frame": 6.0,
+  "notifications_total": 6,
+  "contact_type_counts": {
+    "unknown": 150
+  }
+}

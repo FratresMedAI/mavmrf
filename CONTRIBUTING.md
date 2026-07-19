@@ -52,6 +52,13 @@ cd marmf
 python main.py --mode monitor --no-trained --duration 2 --num-objects 3
 cp reports/report_frame_00000.json ../docs/samples/report_frame_00005.json
 cp reports/visualization_frame_00000.png ../docs/screenshots/monitor_frame.png
+
+# README GIF (needs Pillow from requirements-dev.txt)
+python main.py --mode monitor --no-trained --duration 3 --num-objects 4
+python scripts/make_demo_gif.py
+
+# Seeded benchmark table
+python scripts/benchmark.py --seed 42 --duration 5 --num-objects 6
 ```
 
 ## CI

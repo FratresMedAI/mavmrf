@@ -14,15 +14,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Synthetic YOLO dataset generator (`scripts/generate_dataset.py`)
 - Pytest suite, ruff lint, GitHub Actions CI (`.github/workflows/tests.yml`)
 - Editable install via `marmf/pyproject.toml` (`pip install -e marmf`)
-- Demo scripts (`scripts/demo.ps1`, `scripts/demo.sh`)
+- Demo scripts (`scripts/demo.ps1`, `scripts/demo.sh`) — local clone-and-run path
+- README demo GIF + `scripts/make_demo_gif.py`
+- Seeded benchmark gates (`scripts/benchmark.py`, `docs/benchmarks/`)
 - Architecture docs, optical replay fixture with sidecar JPG
 - Open-source community kit: SECURITY, Code of Conduct, SUPPORT, issue/PR templates, Dependabot, CITATION.cff
+- Design tradeoffs / next-steps narrative aligned with Fratres X AI
 
 ### Changed
 
 - Default monitor duration reduced for demos
 - Reports include `detection_source` on every frame
 - Root README and CONTRIBUTING updated for cross-platform setup
+
 
 ## [0.1.0] - 2026-05-26
 

@@ -6,8 +6,10 @@
 | [SOLUTION_BRIEF.md](SOLUTION_BRIEF.md) | Executive / transition narrative |
 | [capability_matrix.md](capability_matrix.md) | Capability → evidence map |
 | [DEMO_SCRIPT_3_MIN.md](DEMO_SCRIPT_3_MIN.md) | Three-minute demo script |
+| [screenshots/monitor_demo.gif](screenshots/monitor_demo.gif) | Animated local demo (README) |
 | [screenshots/monitor_frame.png](screenshots/monitor_frame.png) | Sample monitor visualization |
 | [samples/report_frame_00005.json](samples/report_frame_00005.json) | Sample operator report JSON |
+| [benchmarks/](benchmarks/) | Seeded reproducible simulation gates |
 
 ## Related root docs
 
