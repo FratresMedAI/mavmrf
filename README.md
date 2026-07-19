@@ -1,7 +1,8 @@
 # MAVMRF
 
 [![Tests](https://github.com/Fratres-X-AI/mavmrf/actions/workflows/tests.yml/badge.svg)](https://github.com/Fratres-X-AI/mavmrf/actions/workflows/tests.yml)
-[![Release](https://img.shields.io/github/v/release/Fratres-X-AI/mavmrf?display_name=tag)](https://github.com/Fratres-X-AI/mavmrf/releases/tag/v0.2.0)
+[![Release](https://img.shields.io/github/v/release/Fratres-X-AI/mavmrf?display_name=tag)](https://github.com/Fratres-X-AI/mavmrf/releases/latest)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21445017.svg)](https://doi.org/10.5281/zenodo.21445017)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)

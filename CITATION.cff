@@ -3,8 +3,16 @@ message: If you use MAVMRF, please cite it as below.
 title: "MAVMRF: Maritime Autonomous Vehicle Monitoring and Response Framework"
 authors:
   - name: Fratres X AI
-version: 0.2.0
+version: 0.2.2
 date-released: "2026-07-19"
+doi: 10.5281/zenodo.21445017
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21445017
+    description: This version (v0.2.2)
+  - type: doi
+    value: 10.5281/zenodo.21445016
+    description: Concept DOI (all versions)
 url: "https://github.com/Fratres-X-AI/mavmrf"
 repository-code: "https://github.com/Fratres-X-AI/mavmrf"
 license: MIT
