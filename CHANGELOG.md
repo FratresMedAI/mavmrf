@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Default monitor duration reduced for demos
 - Reports include `detection_source` on every frame
 - Root README and CONTRIBUTING updated for cross-platform setup
+- CI actions bumped to `checkout@v5` / `setup-python@v6` (Node 20 deprecation)
+- README: release badge, Related Fratres X threads, clone-and-run posture line
 
 
 ## [0.1.0] - 2026-05-26

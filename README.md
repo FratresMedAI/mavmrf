@@ -1,6 +1,7 @@
 # MAVMRF
 
 [![Tests](https://github.com/FratresMedAI/mavmrf/actions/workflows/tests.yml/badge.svg)](https://github.com/FratresMedAI/mavmrf/actions/workflows/tests.yml)
+[![Release](https://img.shields.io/github/v/release/FratresMedAI/mavmrf?display_name=tag)](https://github.com/FratresMedAI/mavmrf/releases/tag/v0.2.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
@@ -28,6 +29,7 @@ On a fresh clone, monitor mode uses **simulation detections by default** (no YOL
 - [Design decisions and tradeoffs](#design-decisions-and-tradeoffs)
 - [What we would change next](#what-we-would-change-next)
 - [Seeded benchmark](#seeded-benchmark)
+- [Related Fratres X threads](#related-fratres-x-threads)
 - [Documentation](#documentation)
 - [Repository layout](#repository-layout)
 - [Tech stack](#tech-stack)
@@ -49,6 +51,8 @@ On a fresh clone, monitor mode uses **simulation detections by default** (no YOL
 ## Local demo (this is the live path)
 
 No cloud app. The demo is a local run that writes reports and visualizations under `marmf/reports/`.
+
+This is the Fratres X open-source posture: **you run the stack**.
 
 ```bash
 # Windows
@@ -161,6 +165,18 @@ python scripts/benchmark.py --seed 42 --duration 5 --num-objects 6
 ```
 
 Results live in [`docs/benchmarks/`](docs/benchmarks/) (`README.md` + `seeded_run.json`).
+
+## Related Fratres X threads
+
+Sibling lab threads on [fratres-x.com](https://fratres-x.com) (Selected Work) — same posture: physics-first modeling, conservative maturity labels, reviewable prototypes.
+
+| Thread | Focus |
+|--------|--------|
+| [Charybdis](https://fratres-x.com) | Contested autonomy — hybrid UUV navigation, conservative fusion, validation gates |
+| [Anti Edge Node](https://fratres-x.com) | Defensive sensing — acoustic / RF / visual fusion, audit logs, field-node concept |
+| [HYPERLINK](https://fratres-x.com) | Missile-defense modeling — imperfect model constellations, uncertainty, simulation |
+
+Site card copy for listing MAVMRF itself: [`docs/SITE_CARD.md`](docs/SITE_CARD.md). Profile pin checklist: [`docs/PROFILE_SETUP.md`](docs/PROFILE_SETUP.md).
 
 ## Documentation
 
