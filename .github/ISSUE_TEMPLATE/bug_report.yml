@@ -1,0 +1,42 @@
+name: Bug report
+description: Report something that does not work as documented
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve MAVMRF. Please search existing issues first.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Clear description of the bug
+      placeholder: Expected X, got Y…
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Minimal commands from a fresh clone
+      placeholder: |
+        cd marmf
+        pip install -r requirements.txt
+        python main.py --mode monitor --no-trained --duration 2
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python version
+      placeholder: Windows 11 / Python 3.12.x
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / traceback
+      description: Paste relevant output (no secrets)
+      render: text

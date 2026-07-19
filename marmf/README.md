@@ -49,7 +49,7 @@ marmf/
 
 ```bash
 python -m venv .venv
-.venv\Scripts\activate
+.venv\Scripts\activate          # Linux/macOS: source .venv/bin/activate
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
 pip install -e .

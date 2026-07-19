@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: If you use MAVMRF, please cite it as below.
+title: "MAVMRF: Maritime Autonomous Vehicle Monitoring and Response Framework"
+authors:
+  - name: FratresMedAI
+version: 0.2.0
+date-released: "2026-07-19"
+url: "https://github.com/FratresMedAI/mavmrf"
+repository-code: "https://github.com/FratresMedAI/mavmrf"
+license: MIT
+keywords:
+  - maritime
+  - sensor-fusion
+  - computer-vision
+  - simulation
+  - yolo
+  - tracking
+abstract: >-
+  Simulation-first Python pipeline for multi-sensor maritime detect, track,
+  and classify with optional YOLOv8 optical detection and operator-facing reports.

@@ -1,12 +1,32 @@
 # MAVMRF
 
 [![Tests](https://github.com/FratresMedAI/mavmrf/actions/workflows/tests.yml/badge.svg)](https://github.com/FratresMedAI/mavmrf/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 
 **Maritime Autonomous Vehicle Monitoring and Response Framework** — a simulation-first Python pipeline for multi-sensor maritime detect, track, and classify.
 
 On a fresh clone, monitor mode uses **simulation detections by default** (no YOLO download). YOLO is opt-in via training, `--pretrained`, or `--weights`.
 
+> **Layout note:** Application code lives in the [`marmf/`](marmf/) directory; the installable package name is **`mavmrf`**.
+
 ![Monitor output](docs/screenshots/monitor_frame.png)
+
+## Contents
+
+- [Highlights](#highlights)
+- [Quick start](#quick-start)
+- [Detection modes](#detection-modes)
+- [Optional: train on synthetic data](#optional-train-on-synthetic-data)
+- [Architecture](#architecture)
+- [Documentation](#documentation)
+- [Repository layout](#repository-layout)
+- [Tech stack](#tech-stack)
+- [Contributing](#contributing)
+- [Citation](#citation)
+- [Disclaimer](#disclaimer)
+- [License](#license)
 
 ## Highlights
 
@@ -22,13 +42,25 @@ On a fresh clone, monitor mode uses **simulation detections by default** (no YOL
 ```bash
 cd marmf
 python -m venv .venv
-.venv\Scripts\activate          # Windows
+
+# Windows
+.venv\Scripts\activate
+
+# Linux / macOS
+# source .venv/bin/activate
+
 pip install -r requirements.txt
 pip install -e .
 python main.py --mode monitor --duration 10 --num-objects 8 --no-trained
 ```
 
 Or run `scripts/demo.ps1` (Windows) / `scripts/demo.sh` (Linux/macOS).
+
+From the repo root you can also use:
+
+```bash
+pip install -e marmf
+```
 
 Reports include `detection_source` (`simulation`, `trained`, `pretrained`, or `explicit`).
 
@@ -60,20 +92,41 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for pipeline diagram, module 
 Simulated / file streams → preprocess → detect → track → fuse → report
 ```
 
+## Documentation
+
+| Doc | Description |
+|-----|-------------|
+| [docs/README.md](docs/README.md) | Documentation index |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Pipeline and extension points |
+| [docs/SOLUTION_BRIEF.md](docs/SOLUTION_BRIEF.md) | Executive narrative |
+| [docs/capability_matrix.md](docs/capability_matrix.md) | Capability → evidence |
+| [docs/DEMO_SCRIPT_3_MIN.md](docs/DEMO_SCRIPT_3_MIN.md) | Demo script |
+| [CHANGELOG.md](CHANGELOG.md) | Release history |
+| [SUPPORT.md](SUPPORT.md) | Where to get help |
+| [SECURITY.md](SECURITY.md) | Vulnerability reporting |
+
+Full CLI reference: [`marmf/README.md`](marmf/README.md).
+
 ## Repository layout
 
 | Path | Description |
 |------|-------------|
-| [`marmf/`](marmf/) | Core framework |
-| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Pipeline and extension points |
+| [`marmf/`](marmf/) | Core framework (package name `mavmrf`) |
+| [`docs/`](docs/) | Architecture, brief, samples, screenshots |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Setup, tests, CI |
 | [`marmf/tests/`](marmf/tests/) | Pytest suite |
-
-Full CLI reference: [`marmf/README.md`](marmf/README.md).
 
 ## Tech stack
 
 Python 3.12 · OpenCV · NumPy · Ultralytics (YOLOv8) · PyTorch · Matplotlib · SciPy · pytest · ruff
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). By participating, you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Citation
+
+See [CITATION.cff](CITATION.cff). Prefer the “Cite this repository” button on GitHub when available.
 
 ## Disclaimer
 

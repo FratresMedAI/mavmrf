@@ -1,5 +1,7 @@
 # Contributing to MAVMRF
 
+Thanks for your interest. Please read the [Code of Conduct](CODE_OF_CONDUCT.md) and [SUPPORT.md](SUPPORT.md). Report security issues via [SECURITY.md](SECURITY.md), not public issues.
+
 ## Setup
 
 ```bash
@@ -58,19 +60,11 @@ GitHub Actions workflow: [`.github/workflows/tests.yml`](.github/workflows/tests
 
 Runs on push/PR to `master`: lint (ruff), pytest, dataset smoke, monitor smoke, file replay.
 
-### First-time Actions enable
-
-If the **Tests** workflow appears in the Actions tab but shows **no runs** after pushing, enable workflows once:
-
-1. Open [Actions](https://github.com/FratresMedAI/mavmrf/actions) for this repo while signed in as the owner.
-2. If prompted, click **I understand my workflows, go ahead and enable them**.
-3. Confirm **Settings → Actions → General → Actions permissions** is set to **Allow all actions and reusable workflows**.
-4. Push any commit to `master` (or use **Run workflow** on the Tests workflow) and verify a green run.
-
-The workflow YAML must stay valid — quote shell commands that contain colons (for example the `grep` assertion on `Detection source: simulation`).
+If a new fork shows workflows disabled, enable Actions under **Settings → Actions → General**. Quote shell commands that contain colons in workflow YAML (for example the `grep` assertion on `Detection source: simulation`).
 
 ## Pull requests
 
 - Keep changes focused
 - Ensure `pytest tests -q` and `ruff check .` pass
 - Update README/docs when CLI behavior changes
+- Use the PR template checklist

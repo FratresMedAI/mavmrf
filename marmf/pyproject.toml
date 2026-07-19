@@ -8,6 +8,27 @@ version = "0.2.0"
 description = "Maritime Autonomous Vehicle Monitoring and Response Framework"
 readme = "README.md"
 requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "FratresMedAI" }]
+keywords = [
+    "maritime",
+    "sensor-fusion",
+    "computer-vision",
+    "simulation",
+    "yolo",
+    "tracking",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
 dependencies = [
     "ultralytics==8.4.30",
     "torch==2.5.1",
@@ -21,6 +42,13 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest==9.0.3", "ruff==0.11.12"]
+
+[project.urls]
+Homepage = "https://github.com/FratresMedAI/mavmrf"
+Repository = "https://github.com/FratresMedAI/mavmrf"
+Issues = "https://github.com/FratresMedAI/mavmrf/issues"
+Documentation = "https://github.com/FratresMedAI/mavmrf/blob/master/docs/ARCHITECTURE.md"
+Changelog = "https://github.com/FratresMedAI/mavmrf/blob/master/CHANGELOG.md"
 
 [project.scripts]
 mavmrf = "main:main"
