@@ -15,8 +15,8 @@ MAVMRF is a portfolio / research prototype that uses **simulated sensor data**. 
 
 Prefer one of:
 
-1. [GitHub Security Advisories](https://github.com/FratresMedAI/mavmrf/security/advisories/new) for this repository
-2. Contact the maintainer via the GitHub profile [@FratresMedAI](https://github.com/FratresMedAI)
+1. [GitHub Security Advisories](https://github.com/Fratres-X-AI/mavmrf/security/advisories/new) for this repository
+2. Contact the maintainer via the GitHub profile [@FratresMedAI](https://github.com/FratresMedAI) (org admin for [Fratres-X-AI](https://github.com/Fratres-X-AI))
 
 Please include:
 

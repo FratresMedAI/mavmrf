@@ -9,7 +9,7 @@ description = "Maritime Autonomous Vehicle Monitoring and Response Framework"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
-authors = [{ name = "FratresMedAI" }]
+authors = [{ name = "Fratres X AI" }]
 keywords = [
     "maritime",
     "sensor-fusion",
@@ -44,11 +44,11 @@ dependencies = [
 dev = ["pytest==9.0.3", "ruff==0.11.12"]
 
 [project.urls]
-Homepage = "https://github.com/FratresMedAI/mavmrf"
-Repository = "https://github.com/FratresMedAI/mavmrf"
-Issues = "https://github.com/FratresMedAI/mavmrf/issues"
-Documentation = "https://github.com/FratresMedAI/mavmrf/blob/master/docs/ARCHITECTURE.md"
-Changelog = "https://github.com/FratresMedAI/mavmrf/blob/master/CHANGELOG.md"
+Homepage = "https://github.com/Fratres-X-AI/mavmrf"
+Repository = "https://github.com/Fratres-X-AI/mavmrf"
+Issues = "https://github.com/Fratres-X-AI/mavmrf/issues"
+Documentation = "https://github.com/Fratres-X-AI/mavmrf/blob/master/docs/ARCHITECTURE.md"
+Changelog = "https://github.com/Fratres-X-AI/mavmrf/blob/master/CHANGELOG.md"
 
 [project.scripts]
 mavmrf = "main:main"

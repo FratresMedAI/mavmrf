@@ -9,7 +9,7 @@ Add under **Selected Work** (Defensive Sensing or Contested Autonomy).
 | Category | Defensive Sensing |
 | Title | MAVMRF |
 | Maturity | Simulation / prototype (not fielded) |
-| Link | https://github.com/FratresMedAI/mavmrf |
+| Link | https://github.com/Fratres-X-AI/mavmrf |
 
 ## Blurb (short)
 

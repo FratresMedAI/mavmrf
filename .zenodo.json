@@ -6,7 +6,7 @@
   "license": "mit",
   "creators": [
     {
-      "name": "FratresMedAI",
+      "name": "Fratres X AI",
       "affiliation": "Fratres X AI"
     }
   ],
@@ -22,7 +22,7 @@
   ],
   "related_identifiers": [
     {
-      "identifier": "https://github.com/FratresMedAI/mavmrf",
+      "identifier": "https://github.com/Fratres-X-AI/mavmrf",
       "relation": "isSupplementTo",
       "resource_type": "software"
     }

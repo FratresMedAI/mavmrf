@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Support / how to run
-    url: https://github.com/FratresMedAI/mavmrf/blob/master/SUPPORT.md
+    url: https://github.com/Fratres-X-AI/mavmrf/blob/master/SUPPORT.md
     about: Setup, demo, and contribution pointers before opening an issue
   - name: Security vulnerability
-    url: https://github.com/FratresMedAI/mavmrf/blob/master/SECURITY.md
+    url: https://github.com/Fratres-X-AI/mavmrf/blob/master/SECURITY.md
     about: Report security issues privately — do not open a public issue

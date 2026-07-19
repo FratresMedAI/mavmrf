@@ -6,8 +6,8 @@ MAVMRF is a **portfolio / research prototype**. There is no commercial support S
 
 | Need | Where |
 |------|--------|
-| Bug report | [GitHub Issues](https://github.com/FratresMedAI/mavmrf/issues) (bug template) |
-| Feature idea | [GitHub Issues](https://github.com/FratresMedAI/mavmrf/issues) (feature template) |
+| Bug report | [GitHub Issues](https://github.com/Fratres-X-AI/mavmrf/issues) (bug template) |
+| Feature idea | [GitHub Issues](https://github.com/Fratres-X-AI/mavmrf/issues) (feature template) |
 | How to run / contribute | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | Architecture | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | Security vulnerability | [SECURITY.md](SECURITY.md) — report privately |

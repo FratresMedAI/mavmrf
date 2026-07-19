@@ -2,11 +2,11 @@ cff-version: 1.2.0
 message: If you use MAVMRF, please cite it as below.
 title: "MAVMRF: Maritime Autonomous Vehicle Monitoring and Response Framework"
 authors:
-  - name: FratresMedAI
+  - name: Fratres X AI
 version: 0.2.0
 date-released: "2026-07-19"
-url: "https://github.com/FratresMedAI/mavmrf"
-repository-code: "https://github.com/FratresMedAI/mavmrf"
+url: "https://github.com/Fratres-X-AI/mavmrf"
+repository-code: "https://github.com/Fratres-X-AI/mavmrf"
 license: MIT
 keywords:
   - maritime
